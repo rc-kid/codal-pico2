@@ -1,10 +1,8 @@
 {
-    "device":"PI-PICO",
-    "processor":"RP2040",
-    "architecture":"CORTEX_M0_PLUS",
+    "device":"PICO2",
+    "processor":"RP2350",
+    "architecture":"CORTEX_M33",
     "toolchain":"ARM_GCC",
-    "post_process":"./build/elf2uf2 <OUTPUT_ELF_LOCATION> <OUTPUT_HEX_DESTINATION>/<OUTPUT_HEX_NAME>.uf2",
-    "pre_process":"python ./utils/call_cmake.py ./libraries/codal-rp2040/pico-sdk/tools/elf2uf2 -f elf2uf2 -o ./build",
     "generate_bin":true,
     "generate_hex":true,
     "config":{
@@ -12,7 +10,7 @@
         "USB_EP_FLAG_NO_AUTO_ZLP":"0x01",
         "USB_EP_FLAG_ASYNC":"0x02",
         "DEVICE_SRAM_BASE":"0x20000000",
-        "DEVICE_SRAM_END":"0x20042000",
+        "DEVICE_SRAM_END":"0x20082000",
         "DEVICE_STACK_BASE":"DEVICE_SRAM_END",
         "DEVICE_STACK_SIZE":8192,
         "TARGET_DEBUG_CLASS":"NOT_IMPLEMENTED",
@@ -31,16 +29,20 @@
         "CODAL_DEBUG":0,
         "DEVICE_USB":1,
         "USB_MAX_PKT_SIZE":64,
-        "USB_DEFAULT_VID": "0x2e8a",
-        "USB_DEFAULT_PID": "0x93bf",
+        "USB_DEFAULT_VID":"0x2e8a",
+        "USB_DEFAULT_PID":"0x93bf",
         "DEVICE_USB_ENDPOINTS":16,
         "DEVICE_USB_ENDPOINT_SHARING":1,
         "PROCESSOR_WORD_TYPE":"uint32_t",
-        "FORCE_RAM_FUNC": "__attribute__((noinline, long_call, section(\".time_critical.codal\")))",
-        "REAL_TIME_FUNC": "__attribute__((section(\".time_critical.codal\")))"
+        "FORCE_RAM_FUNC":"__attribute__((noinline, long_call, section(\".time_critical.codal\")))",
+        "REAL_TIME_FUNC":"__attribute__((section(\".time_critical.codal\")))"
     },
-    "definitions":"-DPICO_FLOAT_SUPPORT_ROM_V1 -DPICO_DOUBLE_SUPPORT_ROM_V1",
-    "cpu_opts":"-mcpu=cortex-m0plus -mthumb",
+    "cmake_definitions":{
+        "PICO_PLATFORM":"rp2350-arm-s",
+        "PICO_BOARD":"none"
+    },
+    "definitions":"",
+    "cpu_opts":"-mcpu=cortex-m33 -mthumb -march=armv8-m.main+fp+dsp -mfloat-abi=softfp -mcmse",
     "asm_flags":"",
     "c_flags":"",
     "cpp_flags":"-std=c++11 -fwrapv -fno-rtti -fno-threadsafe-statics -fno-exceptions -fno-unwind-tables -Wl,--gc-sections -Wl,--sort-common -Wno-ignored-qualifiers",
@@ -54,8 +56,8 @@
         },
         {
             "name":"codal-rp2040",
-            "url":"https://github.com/lancaster-university/codal-rp2040",
-            "branch":"master",
+            "url":"https://github.com/rc-kid/codal-rp2040",
+            "branch":"rp2350",
             "type":"git"
         }
     ]

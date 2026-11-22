@@ -22,8 +22,8 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef PI_PICO_IO_H
-#define PI_PICO_IO_H
+#ifndef PICO2_IO_H
+#define PICO2_IO_H
 
 #include "CodalConfig.h"
 #include "RP2040Pin.h"
@@ -94,7 +94,7 @@ namespace codal
     /**
       * Represents a collection of all I/O pins exposed by the device.
       */
-    class PiPicoIO
+    class Pico2IO
     {
         public:
         RP2040Pin       pin[0];
@@ -134,7 +134,7 @@ namespace codal
           * Create a representation of all given I/O pins on the edge connector
           *
           */
-        PiPicoIO();
+        Pico2IO();
     };
 }
 

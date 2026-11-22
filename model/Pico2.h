@@ -22,8 +22,8 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef PI_PICO_H
-#define PI_PICO_H
+#ifndef PICO2_H
+#define PICO2_H
 
 
 #include "CodalConfig.h"
@@ -41,7 +41,7 @@ DEALINGS IN THE SOFTWARE.
 #include "Timer.h"
 #include "RP2040LowLevelTimer.h"
 
-#include "PiPicoIO.h"
+#include "Pico2IO.h"
 
 #include "CodalFiber.h"
 #include "MessageBus.h"
@@ -49,12 +49,12 @@ DEALINGS IN THE SOFTWARE.
 namespace codal
 {
     /**
-      * Class definition for a PiPico device.
+      * Class definition for a Pico2 device.
       *
       * Represents the device as a whole, and includes member variables that represent various device drivers
       * used to control aspects of the device.
       */
-    class PiPico : public CodalDevice, public CodalComponent
+    class Pico2 : public CodalDevice, public CodalComponent
     {
         private:
 
@@ -74,7 +74,7 @@ namespace codal
         RP2040LowLevelTimer         sysTimer;
         Timer                       timer;
         MessageBus                  messageBus;
-        PiPicoIO                    io;
+        Pico2IO                    io;
 
         /**
           * Constructor.
@@ -82,7 +82,7 @@ namespace codal
           * Create a representation of a Genuino Zero device, which includes member variables
           * that represent various device drivers used to control aspects of the board.
           */
-        PiPico();
+        Pico2();
 
         void idleCallback();
     };

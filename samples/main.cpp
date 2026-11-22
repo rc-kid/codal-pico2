@@ -8,11 +8,11 @@
 #define CODAL_ZSINGLE_WIRE_TEST 1
 
 #if CODAL_ZSINGLE_WIRE_TEST
-#include "PiPico.h"
+#include "Pico2.h"
 #include "CodalDmesg.h"
 #include "ZSingleWireSerial.h"
 using namespace codal;
-PiPico pico;
+Pico2 pico;
 ZSingleWireSerial s(pico.io.GP0);
 
 void cb(uint16_t){
@@ -33,10 +33,10 @@ int main() {
 
 
 #if CODAL_GPIO_TEST
-#include "PiPico.h"
+#include "Pico2.h"
 #include "CodalDmesg.h"
 using namespace codal;
-PiPico pico;
+Pico2 pico;
 
 int main() {
     pico.init();
@@ -51,10 +51,10 @@ int main() {
 
 #if PURE_CODAL_BLINKY
 
-#include "PiPico.h"
+#include "Pico2.h"
 #include "CodalDmesg.h"
 using namespace codal;
-PiPico pico;
+Pico2 pico;
 
 #define APP_ID  100
 #define APP_EVT_ON 100
@@ -137,9 +137,9 @@ int main() {
 
 #if CODAL_MODEL_SDK_BLINKY
 // MODEL BLINKY with SDK
-#include "PiPico.h"
+#include "Pico2.h"
 using namespace codal;
-PiPico pico;
+Pico2 pico;
 
 int main() {
     pico.init();

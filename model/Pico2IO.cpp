@@ -28,7 +28,7 @@ DEALINGS IN THE SOFTWARE.
   */
 
 #include "CodalConfig.h"
-#include "PiPicoIO.h"
+#include "Pico2IO.h"
 
 using namespace codal;
 
@@ -40,7 +40,7 @@ using namespace codal;
   * Accepts a sequence of unique ID's used to distinguish events raised
   * by MicroBitPin instances on the default EventModel.
   */
-PiPicoIO::PiPicoIO() :
+Pico2IO::Pico2IO() :
     GP0(ID_PIN_GP0, (PinNumber)PIN_NAME_GP0, PIN_CAPABILITY_DIGITAL),
     GP1(ID_PIN_GP1, (PinNumber)PIN_NAME_GP1, PIN_CAPABILITY_DIGITAL),
     GP2(ID_PIN_GP2, (PinNumber)PIN_NAME_GP2, PIN_CAPABILITY_DIGITAL),

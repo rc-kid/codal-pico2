@@ -23,13 +23,13 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include "CodalConfig.h"
-#include "PiPico.h"
+#include "Pico2.h"
 #include "CodalDmesg.h"
 #include "Timer.h"
 
 using namespace codal;
 
-PiPico* pico_device_instance = NULL;
+Pico2* pico_device_instance = NULL;
 
 /**
   * Constructor.
@@ -37,7 +37,7 @@ PiPico* pico_device_instance = NULL;
   * Create a representation of a GenuinoZero device, which includes member variables
   * that represent various device drivers used to control aspects of the micro:bit.
   */
-PiPico::PiPico() :
+Pico2::Pico2() :
     sysTimer(),
     timer(sysTimer),
     messageBus(),
@@ -51,7 +51,7 @@ PiPico::PiPico() :
     // Bring up fiber scheduler.
     scheduler_init(messageBus);
 
-    messageBus.listen(DEVICE_ID_MESSAGE_BUS_LISTENER, DEVICE_EVT_ANY, this, &PiPico::onListenerRegisteredEvent);
+    messageBus.listen(DEVICE_ID_MESSAGE_BUS_LISTENER, DEVICE_EVT_ANY, this, &Pico2::onListenerRegisteredEvent);
 
     for(int i = 0; i < DEVICE_COMPONENT_COUNT; i++)
     {
@@ -67,7 +67,7 @@ PiPico::PiPico() :
   * the compass and the accelerometer, where we only want to add them to the idle
   * fiber when someone has the intention of using these components.
   */
-void PiPico::onListenerRegisteredEvent(Event evt)
+void Pico2::onListenerRegisteredEvent(Event evt)
 {
     // switch(evt.value)
     // {
@@ -79,7 +79,7 @@ void PiPico::onListenerRegisteredEvent(Event evt)
 * We use this for any low priority, backgrounf housekeeping.
 *
 */
-void PiPico::idleCallback()
+void Pico2::idleCallback()
 {
     codal_dmesg_flush();
 }
@@ -92,7 +92,7 @@ void pico_dmesg_flush()
     if (codalLogStore.ptr > 0 && cplay_device_instance)
     {
         for (uint32_t i=0; i<codalLogStore.ptr; i++)
-            ((PiPico *)cplay_device_instance)->serial.putc(codalLogStore.buffer[i]);
+            ((Pico2 *)cplay_device_instance)->serial.putc(codalLogStore.buffer[i]);
 
         codalLogStore.ptr = 0;
     }
