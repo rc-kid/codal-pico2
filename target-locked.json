@@ -52,7 +52,7 @@
             "url": "https://github.com/lancaster-university/codal-core"
         },
         {
-            "branch": "rp2350",
+            "branch": "21afe3fea0f53211577d7c84adaa9762e5f4b99a",
             "name": "codal-rp2040",
             "type": "git",
             "url": "https://github.com/rc-kid/codal-rp2040"
